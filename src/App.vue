@@ -79,7 +79,8 @@ import { ref, computed, onUnmounted } from "vue";
 import { io } from 'socket.io-client';
 
 // --- Socket.IO 連接 ---
-const socket = io('http://localhost:3000');
+const SOCKET_SERVER_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'; // 使用 Vite 環境變數
+const socket = io(SOCKET_SERVER_URL);
 
 socket.on('connect', () => {
   console.log('已連接到伺服器！Socket ID:', socket.id);
